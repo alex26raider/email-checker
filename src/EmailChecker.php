@@ -51,6 +51,11 @@ class EmailChecker
      */
     protected $nameServers = ['192.168.0.1'];
 
+    /*
+     * Return 1 if success, otherwise returns the error code (it returns 0 if it's a generic error)
+     *
+     * @return int
+     */
     public function check($email = false)
     {
         $disposable = json_decode(file_get_contents(__DIR__.'/json/list.json'), true);
@@ -60,7 +65,7 @@ class EmailChecker
         }
 
         if (in_array($this->domain, $disposable)) {
-            return false;
+            return 0;
         }
 
         $mxs = [];
@@ -92,7 +97,7 @@ class EmailChecker
             $code = isset($matches[1]) ? $matches[1] : '';
 
             if ($code != '220') {
-                $result = false;
+                $result = (int)$code;
             }
 
             $this->send('helo hi');
@@ -108,16 +113,16 @@ class EmailChecker
 
             if ($code == '250') {
                 // accepted
-                $result = true;
+                $result = 1;
             } elseif ($code == '451' || $code == '452') {
-                $result = true;
+                $result = 1;
             } else {
-                $result = false;
+                $result = (int)$code;
             }
 
             $this->quit();
         } else {
-            $result = false;
+            $result = 0;
         }
 
         return $result;

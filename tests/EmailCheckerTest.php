@@ -23,16 +23,16 @@ class EmailCheckerTest extends TestCase
 
     public function testEmailCheckerIsTrue()
     {
-        $this->assertTrue($this->email_checker->check('amigo.k8@gmail.com'));
+        $this->assertEquals(1, $this->email_checker->check('amigo.k8@gmail.com'));
     }
 
     public function testEmailCheckerIsFalse()
     {
-        $this->assertFalse($this->email_checker->check('example@example.com'));
+        $this->assertEquals(0, $this->email_checker->check('example@example.com'));
     }
 
     public function testDisposableMailIsFalse()
     {
-        $this->assertFalse($this->email_checker->check('amigo.k8@0-mail.com'));
+        $this->assertEquals(0, $this->email_checker->check('amigo.k8@0-mail.com'));
     }
 }

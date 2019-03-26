@@ -51,8 +51,10 @@ To add 'email_checker' at email rule
 
 #### Example Usage With Facade
  
+ Return 1 if success, otherwise returns the error code of the server answered 
+ (it returns 0 if it's a generic error)
  ```php
- // reture boolean
+ // reture int
  EmailChecker::check('me@example.com');
 ```
 
