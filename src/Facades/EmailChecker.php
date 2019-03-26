@@ -1,6 +1,6 @@
 <?php
 
-namespace Tintnaingwin\EmailChecker\Facades;
+namespace Alex26raider\EmailChecker\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,6 +13,6 @@ class EmailChecker extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'Tintnaingwin\EmailChecker\EmailChecker';
+        return 'Alex26raider\EmailChecker\EmailChecker';
     }
 }

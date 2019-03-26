@@ -1,5 +1,5 @@
 {
-    "name": "tintnaingwin/email-checker",
+    "name": "alex26raider/email-checker",
     "description": "Laravel Package To Validate If An Email Address Exists Without Sending An Email",
     "license": "MIT",
     "keyword": ["laravel","email","validate","SMTP"],
@@ -20,7 +20,7 @@
             "tests/EmailCheckerTest.php"
         ],
         "psr-4": {
-            "Tintnaingwin\\EmailChecker\\" : "src/"
+            "Alex26raider\\EmailChecker\\" : "src/"
         }
     },
     "extra": {
@@ -29,10 +29,10 @@
         },
         "laravel": {
             "providers": [
-                "Tintnaingwin\\EmailChecker\\EmailCheckerServiceProvider"
+                "Alex26raider\\EmailChecker\\EmailCheckerServiceProvider"
             ],
             "aliases": {
-                "EmailChecker": "Tintnaingwin\\EmailChecker\\Facades\\EmailChecker"
+                "EmailChecker": "Alex26raider\\EmailChecker\\Facades\\EmailChecker"
             }
         }
     },

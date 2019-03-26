@@ -27,12 +27,12 @@ If you are using Laravel < 5.5, you also need to add the service provider class 
 
 ##### Service Provider
 ```php
-Tintnaingwin\EmailChecker\EmailCheckerServiceProvider::class,
+Alex26raider\EmailChecker\EmailCheckerServiceProvider::class,
 ```
 
 ##### Facade
 ```php
-'EmailChecker' => Tintnaingwin\EmailChecker\Facades\EmailChecker::class,
+'EmailChecker' => Alex26raider\EmailChecker\Facades\EmailChecker::class,
 ```
 
 #### Example

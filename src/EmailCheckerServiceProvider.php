@@ -1,6 +1,6 @@
 <?php
 
-namespace Tintnaingwin\EmailChecker;
+namespace Alex26raider\EmailChecker;
 
 use Illuminate\Support\ServiceProvider;
 use Validator;
