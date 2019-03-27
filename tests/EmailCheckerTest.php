@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex26raider
- * Date: 4/17/18
- * Time: 2:47 PM.
- */
+
 use PHPUnit\Framework\TestCase;
-use Alex26raider\EmailChecker\EmailChecker;
+use Alexpriftuli\EmailChecker\EmailChecker;
 
 class EmailCheckerTest extends TestCase
 {

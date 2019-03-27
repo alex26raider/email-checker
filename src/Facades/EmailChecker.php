@@ -1,6 +1,6 @@
 <?php
 
-namespace Alex26raider\EmailChecker\Facades;
+namespace Alexpriftuli\EmailChecker\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,6 +13,6 @@ class EmailChecker extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'Alex26raider\EmailChecker\EmailChecker';
+        return 'Alexpriftuli\EmailChecker\EmailChecker';
     }
 }
