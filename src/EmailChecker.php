@@ -2,6 +2,7 @@
 
 namespace Alexpriftuli\EmailChecker;
 
+
 /**
  * Class EmailChecker.
  */
@@ -54,23 +55,25 @@ class EmailChecker
     /*
      * Return 1 if success, otherwise returns the error code (it returns 0 if it's a generic error)
      *
+     * @param Email $email
+     *
      * @return int
      */
-    public function check($email = false)
+    public function check(Email $email = null)
     {
-        $disposable = json_decode(file_get_contents(__DIR__.'/json/list.json'), true);
-
-        if ($email) {
-            $this->setEmail($email);
+        if (!is_object($email)) {
+            return 0;
         }
 
-        if (in_array($this->domain, $disposable)) {
+        $disposable = json_decode(file_get_contents(__DIR__.'/json/list.json'), true);
+
+        if (in_array($email->getDomain(), $disposable)) {
             return 0;
         }
 
         $mxs = [];
 
-        list($hosts, $mxRecords) = $this->queryMX($this->domain);
+        list($hosts, $mxRecords) = $this->queryMX($email->getDomain());
 
         for ($n = 0; $n < count($hosts); $n++) {
             $mxs[$hosts[$n]] = $mxRecords[$n];
@@ -78,7 +81,7 @@ class EmailChecker
 
         asort($mxs);
 
-        array_push($mxs, $this->domain);
+        array_push($mxs, $email->getDomain());
 
         $timeout = $this->max_conn_time / (count($hosts) > 0 ? count($hosts) : 1);
 
@@ -105,7 +108,7 @@ class EmailChecker
             $this->send('MAIL FROM: <'.$this->from_email.'>');
 
             // ask of rcpt
-            $reply = $this->send('RCPT TO: <'.$email.'>');
+            $reply = $this->send('RCPT TO: <'.$email->getEmail().'>');
 
             // parse code and message
             preg_match('/^([0-9]{3}) /ims', $reply, $matches);
@@ -135,22 +138,6 @@ class EmailChecker
         $reply = fread($this->socket, 2082);
 
         return $reply;
-    }
-
-    protected function parseEmail($email)
-    {
-        $parts = explode('@', $email);
-        $domain = array_pop($parts);
-        $user = implode('@', $parts);
-
-        return [$user, $domain];
-    }
-
-    protected function setEmail($email)
-    {
-        $parts = $this->parseEmail($email);
-        $this->user = $parts[0];
-        $this->domain = $parts[1];
     }
 
     protected function queryMX($domain)
@@ -192,14 +179,6 @@ class EmailChecker
         $this->send('quit');
         // close socket
         fclose($this->socket);
-    }
-
-    /**
-     * @return string
-     */
-    public function getDomain()
-    {
-        return $this->domain;
     }
 
 }

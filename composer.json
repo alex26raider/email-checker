@@ -5,8 +5,8 @@
     "keyword": ["laravel","email","validate","SMTP"],
     "authors": [
         {
-            "name": "Tint Naing Win",
-            "email": "amigo.k8@gmail.com"
+            "name": "Alexandro Priftuli",
+            "email": "alexandro.priftuli@gmail.com"
         }
     ],
     "require": {

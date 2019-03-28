@@ -1,11 +1,12 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Alexpriftuli\EmailChecker\EmailChecker;
+use Alexpriftuli\EmailChecker;
 
 class EmailCheckerTest extends TestCase
 {
     public $email_checker;
+    public $email;
 
     /**
      * EmailCheckerTest constructor.
@@ -13,21 +14,28 @@ class EmailCheckerTest extends TestCase
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $this->email_checker = new EmailChecker();
+        $this->email = new EmailChecker\Email();
+        $this->email_checker = new EmailChecker\EmailChecker();
     }
 
     public function testEmailCheckerIsTrue()
     {
-        $this->assertEquals(1, $this->email_checker->check('amigo.k8@gmail.com'));
+        $emailToCheck = 'amigo.k8@gmail.com';
+        $this->email->setEmail($emailToCheck);
+        $this->assertEquals(1, $this->email_checker->check($this->email));
     }
 
     public function testEmailCheckerIsFalse()
     {
-        $this->assertEquals(0, $this->email_checker->check('example@example.com'));
+        $emailToCheck = 'example@example.com';
+        $this->email->setEmail($emailToCheck);
+        $this->assertEquals(0, $this->email_checker->check($this->email));
     }
 
     public function testDisposableMailIsFalse()
     {
-        $this->assertEquals(0, $this->email_checker->check('amigo.k8@0-mail.com'));
+        $emailToCheck = 'amigo.k8@0-mail.com';
+        $this->email->setEmail($emailToCheck);
+        $this->assertEquals(0, $this->email_checker->check($this->email));
     }
 }
