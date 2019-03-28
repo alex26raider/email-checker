@@ -193,4 +193,13 @@ class EmailChecker
         // close socket
         fclose($this->socket);
     }
+
+    /**
+     * @return string
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+
 }
